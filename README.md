@@ -23,5 +23,8 @@ Autor: Felipe Garcia
 **3º semestre** do curso de Engenharia de Computação, **2018**.
 
 ## Imagens
-![](/print1.jpg)
-![](/print2.jpg)
+OBS.: prints feitos no Lubuntu, com ambiente LXDE, por isso, alguns textos ficaram meio distorcidos.
+
+![](/print1.png)
+![](/print2.png)
+![](/print3.png)
