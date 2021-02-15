@@ -1,0 +1,222 @@
+<BLayout>:
+    orientation: 'vertical'
+    text_caixa1: caixa_texto1.text
+    text_caixa2: caixa_texto2.text
+
+    canvas.before:
+        #Color:
+            #rgba: 1, 1, 1, 1
+        Rectangle:
+            source: 'fundo_verde1 (50%-).jpg'
+            pos: self.pos
+            size: self.size
+
+    Label:
+        text: root.texto_label_titulo
+        font_size: 30
+        size_hint_y: .1
+        halign: 'center'
+        color: 0, 0, 0, 1
+        bold: True
+        italic: True
+
+    GridLayout
+        cols: 2
+        spacing: 10
+
+
+        TextInput:
+            # text: root.text_caixa1
+            id: caixa_texto1
+            focus: True
+            # background_color: 1, 0, 0, .5
+            hint_text: root.hint_caixa1
+            cursor_color: 0, 0, 1, 1
+            font_size: 20
+            # background_active: 'vermelho (com_borda).jpg'
+            background_active: 'ameixa_escuro_imagem_1.jpg'
+            background_normal: 'ameixa_escuro_sem_focus.jpg'
+
+
+        TextInput:
+            id: caixa_texto2
+            # background_color: 0, 0, 1, 1
+            # hint_text: 'Ex.: abcde'
+            hint_text: root.hint_caixa2
+            font_size: 20
+            # background_active: 'azul (com_borda).jpg'
+            background_active: 'azul_imagem_1.jpg'
+            background_normal: 'azul_sem_focus.jpg'
+
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: .2
+
+        Label_Autoria:
+            color: 0, 0, 0, .8
+            text_size: self.size
+            halign: 'left'
+            bold: True
+            italic: True
+            size_hint_x: .25
+            # pos_hint: {'right': .9, 'top': .7}
+
+
+        Botao_comparar:
+            id: botao_comparar
+            background_color: 0, 1, 1, 1
+            text: 'Comparar'
+            font_size: 35
+            bold: True
+            color: 1, 1, 0, 1
+            pos_hint: {'center_x': .5}
+            size_hint_x: .5
+            # size_hint_y: .5
+            on_press:
+                root.abrir_PopupAnalise()
+                root.print_txt()
+                root.manager.current = 'tela2'
+
+        BoxLayout:
+            size_hint_x: .25
+
+<PopupAnalise>:
+    auto_dismiss: False
+    size_hint: .5, .6
+    title: root.texto_popup_titulo
+    title_align: 'left'
+    title_size: '24sp'
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        Label:
+            # text: 'texto'
+            text: root.texto_popup_corpo
+            markup: True
+
+        Button:
+            size_hint_y: .3
+            text: 'Fechar'
+            on_press:
+                root.dismiss()
+                # root.passar_p_tela2()
+
+<LabeisLayout>:
+    orientation: 'vertical'
+    # spacing: 30
+    #padding: 20
+
+    canvas.before:
+        #Color:
+            #rgba: 1, 0, 0, 1
+        # Line:
+            # points: self.width/2,self.height, self.width/2, 0
+            # width: 1.3
+        Rectangle:
+            source: 'fundo_labeis_3 (fundo_geral).png'
+            pos: self.pos
+            size: self.size
+
+    canvas:
+        Line:
+            points: self.width/2,self.height, self.width/2, 0
+            width: 1.3
+
+    GridLayout:
+        cols: 2
+        spacing: 30
+        padding: 20
+        # size_hint_y: .8
+
+        BoxLayout:
+            orientation: 'horizontal'
+
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, .6
+                RoundedRectangle:
+                    source: 'fundo_labeis_1 (branco).png'
+                    segments: 30
+                    radius: [20]
+                    pos: self.pos
+                    size: self.size
+
+            BoxLayout:
+                size_hint_x: .02
+
+            ScrollView:
+                scroll_type: ['bars', 'content']
+                scroll_wheel_distance: 30
+
+                Label_texto_1:
+                    # text: 'oi'
+                    # text: root.texto_Label1
+                    # text: BLayout.text_caixa1
+                    size_hint_y: None
+                    # text_size: self.size
+                    text_size: self.width - 10, None
+                    halign: 'justify'
+                    valign: 'middle'
+                    font_size: 20
+                    markup: True
+                    height: self.texture_size[1]
+
+            BoxLayout:
+                size_hint_x: .02
+
+
+        BoxLayout:
+            orientation: 'horizontal'
+
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, .6
+                RoundedRectangle:
+                    source: 'fundo_labeis_1 (branco).png'
+                    segments: 30
+                    radius: [20]
+                    pos: self.pos
+                    size: self.size
+
+            BoxLayout:
+                size_hint_x: .02
+
+            ScrollView:
+                scroll_type: ['bars', 'content']
+                scroll_wheel_distance: 30
+
+                Label_texto_2:
+                    size_hint_y: None
+                    # text_size: self.size
+                    text_size: self.width - 10, None
+                    halign: 'justify'
+                    valign: 'middle'
+                    font_size: 20
+                    markup: True
+                    height: self.texture_size[1]
+
+            BoxLayout:
+                size_hint_x: .02
+
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: .15
+
+        BoxLayout:
+            size_hint_x: .25
+
+        Button:
+            text: 'Comparar novamente'
+            size_hint_x: .5
+            # size_hint_y: .4
+            background_color: 1, 1, 0, 1
+            font_size: 30
+            bold: True
+            pos_hint: {'center_x': .5}
+            on_press:
+                root.manager.current = 'tela1'
+                # root.print_txt2()
+
+        BoxLayout:
+            size_hint_x: .25
